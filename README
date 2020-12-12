@@ -1,0 +1,15 @@
+=== OBJECTIVE ===
+Command line tool to convert json to java properties and vice versa
+
+=== Notes ===
+All public interface has function name in the form:
+    "ett" + _ + <module name> + _ + <function name>
+where <module name> is a single lowercase word, while <function name> is
+lowercase and can be made by more underscore separated words.
+
+A binary tree has been chosen as the interface data structure between JSON
+format and Java Properties. Therefore both the interfaces of json module and java
+properties module provide a parsing function and a print function to convert
+the structure of the data from string to binary tree and vice versa.
+
+
