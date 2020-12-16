@@ -4,14 +4,12 @@
 
 typedef struct BinTree_st BinTree;
 
-/**
- * Create a binary tree and put @data in the node.
+/** Create a binary tree and put @data in the node.
  *      @data:  can be NULL.
  */
 BinTree *ett_bintree_create(void *data);
 
-/**
- * Deallocate memory of a binary tree recursively.
+/** Deallocate memory of a binary tree recursively.
  *      @b, @free_data:  can be NULL.
  */
 void ett_bintree_free(
@@ -25,6 +23,13 @@ void ett_bintree_free(
  */
 BinTree *ett_bintree_add_son(BinTree *b, void *data);
 BinTree *ett_bintree_add_bro(BinTree *b, void *data);
+
+/** Get field of a node.
+ *      @b:     cannot be NULL
+ */
+BinTree *ett_bintree_get_son (BinTree *b);
+BinTree *ett_bintree_get_bro (BinTree *b);
+void    *ett_bintree_get_data(BinTree *b);
 
 /** Visit the tree in a prefix order (first the root,
  *  second the brother, and last the son.
@@ -48,7 +53,18 @@ void ett_bintree_visit_post(
                             void (*visit)(BinTree *b, void *data), 
                             void *data);
 
-/** Print a tree
+/** Visit the tree in a way expressed by the last three letters (r for 
+ *  'root'. b for 'brother' and s for 'son')
+ *      @b:     can be NULL
+ *      @visit: cannot be NULL
+ *      @data:  is used directly by visit()
+ */
+void ett_bintree_visit_rbs (BinTree *b, void (*visit)(BinTree *b, void *data), void *data);
+void ett_bintree_visit_rsb (BinTree *b, void (*visit)(BinTree *b, void *data), void *data);
+void ett_bintree_visit_sbr (BinTree *b, void (*visit)(BinTree *b, void *data), void *data);
+void ett_bintree_visit_bsr (BinTree *b, void (*visit)(BinTree *b, void *data), void *data);
+
+    /** Print a tree
  *      @b:     can be NULL
  *      @print: cannot be NULL
  */

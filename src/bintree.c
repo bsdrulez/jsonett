@@ -46,6 +46,20 @@ BinTree *ett_bintree_add_bro(BinTree *b, void *data){
 }
 
 
+BinTree *ett_bintree_get_son (BinTree *b){
+    assert(b);
+    return SON(b);
+}
+BinTree *ett_bintree_get_bro (BinTree *b){
+    assert(b);
+    return BRO(b);
+}
+void *ett_bintree_get_data(BinTree *b){
+    assert(b);
+    return DATA(b);
+}
+
+
 void ett_bintree_visit_pref(
                             BinTree *b, 
                             void (*visit)(BinTree *b, void *data), 
@@ -68,13 +82,37 @@ void ett_bintree_visit_post(
 }
 
 
+void ett_bintree_visit_rbs (BinTree *b, void (*visit)(BinTree *b, void *data), void *data){
+    assert(visit);          if(!b) return;
+    visit(b,data);
+    ett_bintree_visit_post(BRO(b),visit,data);
+    ett_bintree_visit_post(SON(b),visit,data);
+}
+void ett_bintree_visit_rsb (BinTree *b, void (*visit)(BinTree *b, void *data), void *data){
+    assert(visit);          if(!b) return;
+    visit(b,data);
+    ett_bintree_visit_post(SON(b),visit,data);
+    ett_bintree_visit_post(BRO(b),visit,data);
+}
+void ett_bintree_visit_sbr (BinTree *b, void (*visit)(BinTree *b, void *data), void *data){
+    assert(visit);          if(!b) return;
+    ett_bintree_visit_post(SON(b),visit,data);
+    ett_bintree_visit_post(BRO(b),visit,data);
+    visit(b,data);
+}
+void ett_bintree_visit_bsr (BinTree *b, void (*visit)(BinTree *b, void *data), void *data){
+    assert(visit);          if(!b) return;
+    ett_bintree_visit_post(BRO(b),visit,data);
+    ett_bintree_visit_post(SON(b),visit,data);
+    visit(b,data);
+}
 
 
 static void print_node(BinTree *b, void *data){
     printf("&b=%p    bro=%p    son%p    data=%p", b,BRO(b),SON(b),DATA(b));
     if(data){
         char *(*str)(void *) = (char *(*)(void *)) data;
-        printf(" -> %s",str(DATA(b)));
+        printf(" -> '%s'",str(DATA(b)));
     }
     printf("\n");
 }

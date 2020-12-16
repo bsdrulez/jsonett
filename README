@@ -12,4 +12,13 @@ format and Java Properties. Therefore both the interfaces of json module and jav
 properties module provide a parsing function and a print function to convert
 the structure of the data from string to binary tree and vice versa.
 
+=== IMPROVEMENTS ===
 
+propett.c:
+    - create a suitable module for the List
+    - the function"print_node" is a variant of the visit_pref;
+      clear the functions visit_[rsb]{3} and create the function
+      with hook pre-son, post-son, etc.
+
+propett.c/jsonett.c:
+    - generarize the interface parse/print for better extension
