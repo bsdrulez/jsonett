@@ -22,3 +22,11 @@ propett.c:
 
 propett.c/jsonett.c:
     - generarize the interface parse/print for better extension
+    - use the data structure provided by glib2 instead of custom List and
+      Stack
+
+jsonett.c:
+    - make parse return the Bintree pointer so there is no need for double
+      root of the json bintree (see also FIXME in wtt_json_print)
+    - remove warning from cast ponter->char
+    - dind more elegant solution to do-while break line 78

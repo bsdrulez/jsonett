@@ -28,10 +28,16 @@ void ett_lst_add (List **l_addr, char *token){
     return ett_lst_add( &((*l_addr)->next), token);
 }
 
-void ett_lst_remove_last (List **l_addr){
+char * ett_lst_remove_last (List **l_addr){
     assert(l_addr);
-    if(!*l_addr) return;
+    if(!*l_addr) return NULL;
     List *l = *l_addr;
-    if(!(l->next)){ free(l); *l_addr = NULL; return; }
-    ett_lst_remove_last(&(l->next));
+    char *token = NULL;
+    if(!(l->next)){ 
+        token = l->token; 
+        free(l); 
+        *l_addr = NULL; 
+        return token; 
+    }
+    return ett_lst_remove_last(&(l->next));
 }

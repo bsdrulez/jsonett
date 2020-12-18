@@ -23,6 +23,6 @@ void ett_lst_add (List **l_addr, char *token);
  *  put in the variable pointed by @l_addr.
  *      @l_addr:        cannot be NULL
  */
-void ett_lst_remove_last (List **l_addr);
+char * ett_lst_remove_last (List **l_addr);
 
 #endif
